@@ -6,7 +6,9 @@ import { APP_GUARD } from '@nestjs/core'
 import { AuthGuard } from './guards/auth.guard'
 import { AuthModule } from './modules/auth/auth.module'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { User } from 'src/entities/user.entity'
+import { User } from 'src/modules/users/users.entity'
+import { PagesModule } from './modules/pages/pages.module'
+import { Page } from './modules/pages/pages.entity'
 
 @Module({
   imports: [
@@ -19,9 +21,10 @@ import { User } from 'src/entities/user.entity'
       username: 'root',
       password: 'example',
       database: 'website_maker',
-      entities: [User],
+      entities: [User, Page],
       synchronize: false,
     }),
+    PagesModule,
   ],
   controllers: [AppController],
   providers: [

@@ -13,6 +13,8 @@ export class User {
   @Column()
   password: string
 
-  @Column()
+  @Column({
+    enum: ['user', 'admin'],
+  })
   role: IRole
 }

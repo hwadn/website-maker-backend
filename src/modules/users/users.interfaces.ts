@@ -1,4 +1,4 @@
-import { IRole } from 'src/entities/user.entity'
+import { IRole } from 'src/modules/users/users.entity'
 
 export interface ICreateUserArgs {
   name: string
