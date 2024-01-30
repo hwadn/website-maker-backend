@@ -11,11 +11,20 @@ export class PagesService {
 
   async listPages(pageSize: number, pageNumber: number) {
     const skip = (pageNumber - 1) * pageSize
-    // TODO
     const [pages, total] = await this.pageRepository
       .createQueryBuilder('pages')
-      .leftJoinAndSelect('pages.user', 'user', 'user.id=pages.creator_id')
-      .select(['pages.id', 'user.name'])
+      .leftJoinAndSelect('pages.creator', 'user', 'user.id=pages.creator_id')
+      .select([
+        'pages.id',
+        'pages.title',
+        'pages.creator_id',
+        'pages.create_time',
+        'pages.update_time',
+        'pages.config',
+        'user.name',
+        'user.id',
+        'user.role',
+      ])
       .skip(skip)
       .take(pageSize)
       .getManyAndCount()

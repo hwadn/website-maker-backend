@@ -29,5 +29,5 @@ export class Page {
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'creator_id' })
-  user: User
+  creator: User
 }

@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNumberString, IsOptional } from 'class-validator'
+import { IUser } from '../users/users.dto'
 
 export class ListPagesQueryDto {
   @ApiProperty({ required: false })
@@ -24,16 +25,16 @@ class IPage {
   creator_id: number
 
   @ApiProperty()
-  creator_name: string
+  create_time: string
 
   @ApiProperty()
-  create_time: number
-
-  @ApiProperty()
-  update_time: number
+  update_time: string
 
   @ApiProperty()
   config: string
+
+  @ApiProperty({ type: IUser })
+  creator: IUser
 }
 
 export class ListPagesResDto {
