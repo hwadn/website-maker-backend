@@ -12,6 +12,6 @@ export class PagesController {
   @ApiResponse({ type: ListPagesResDto })
   listPages(@Query() query: ListPagesQueryDto): Promise<ListPagesResDto> {
     const { pageSize = 10, pageNum = 1 } = query
-    return this.pageService.listPages(Number(pageSize), Number(pageNum)) as any
+    return this.pageService.listPages(Number(pageSize), Number(pageNum))
   }
 }

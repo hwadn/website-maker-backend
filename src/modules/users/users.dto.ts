@@ -13,7 +13,7 @@ export class ListUsersQueryDto {
   pageNum?: string
 }
 
-class IUser {
+export class IUser {
   @ApiProperty()
   id: number
 
