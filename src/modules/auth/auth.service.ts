@@ -26,7 +26,7 @@ export class AuthService {
       uid = insertRes.raw.insertId
     }
 
-    const payload = { sub: uid, username }
+    const payload = { uid, username }
     return {
       username,
       uid,

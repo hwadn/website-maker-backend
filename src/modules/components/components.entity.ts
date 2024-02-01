@@ -8,16 +8,25 @@ import {
 } from 'typeorm'
 import { User } from '../users/users.entity'
 
-@Entity('wm_pages')
-export class Page {
+@Entity('wm_components')
+export class Component {
   @PrimaryGeneratedColumn()
   id: number
 
   @Column()
-  title: string
+  name: string
 
   @Column()
-  @RelationId((page: Page) => page.creator)
+  version: string
+
+  @Column()
+  display_name: string
+
+  @Column()
+  css_display: string
+
+  @Column()
+  @RelationId((component: Component) => component.creator)
   creator_id: number
 
   @Column()
@@ -25,9 +34,6 @@ export class Page {
 
   @Column()
   update_time: string
-
-  @Column()
-  config: string
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'creator_id' })
