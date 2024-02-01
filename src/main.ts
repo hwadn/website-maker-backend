@@ -5,7 +5,7 @@ import { ValidationPipe } from '@nestjs/common'
 import { TransformInterceptor } from 'src/interceptors/transform.interceptor'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule, { cors: true })
 
   const config = new DocumentBuilder()
     .setTitle('API Document')
