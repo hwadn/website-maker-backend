@@ -9,6 +9,8 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { User } from 'src/modules/users/users.entity'
 import { PagesModule } from './modules/pages/pages.module'
 import { Page } from './modules/pages/pages.entity'
+import { ComponentsModule } from './modules/components/components.module'
+import { Component } from './modules/components/components.entity'
 
 @Module({
   imports: [
@@ -21,10 +23,11 @@ import { Page } from './modules/pages/pages.entity'
       username: 'root',
       password: 'example',
       database: 'website_maker',
-      entities: [User, Page],
+      entities: [User, Page, Component],
       synchronize: false,
     }),
     PagesModule,
+    ComponentsModule,
   ],
   controllers: [AppController],
   providers: [

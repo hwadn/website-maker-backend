@@ -1,14 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger'
 import {
-  IsJSON,
-  IsNotEmpty,
   IsNumberString,
   IsOptional,
+  IsNotEmpty,
   IsString,
 } from 'class-validator'
 import { IUser } from '../users/users.dto'
 
-export class ListPagesQueryDto {
+export class ListComponentsQueryDto {
   @ApiProperty({ required: false })
   @IsOptional()
   @IsNumberString()
@@ -20,12 +19,21 @@ export class ListPagesQueryDto {
   pageNum?: string
 }
 
-class IPage {
+class IComponent {
   @ApiProperty()
   id: number
 
   @ApiProperty()
-  title: string
+  name: string
+
+  @ApiProperty()
+  version: string
+
+  @ApiProperty()
+  display_name: string
+
+  @ApiProperty()
+  css_display: string
 
   @ApiProperty()
   creator_id: number
@@ -36,36 +44,43 @@ class IPage {
   @ApiProperty()
   update_time: string
 
-  @ApiProperty()
-  config: string
-
   @ApiProperty({ type: IUser })
   creator: IUser
 }
 
-export class ListPagesResDto {
-  @ApiProperty({ isArray: true, type: IPage })
-  data: IPage[]
+export class ListComponentsResDto {
+  @ApiProperty({ isArray: true, type: IComponent })
+  data: IComponent[]
 
   @ApiProperty()
   total: number
 }
 
-export class CreatePageBodyDto {
+export class CreateComponentBodyDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  title: string
+  name: string
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsJSON()
-  config: string
+  @IsString()
+  version: string
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  display_name: string
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  css_display: string
 }
 
-export class IUpdatePageParams {
+export class IUpdateComponentParams {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  pageId: string
+  componentId: string
 }

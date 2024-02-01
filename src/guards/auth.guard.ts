@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
 import { JwtService } from '@nestjs/jwt'
+import { Request } from 'express'
 import { JWT_SECRET } from 'src/constants/auth'
 import { IS_PUBLIC_KEY } from 'src/decorators/public'
 
@@ -22,11 +23,10 @@ export class AuthGuard implements CanActivate {
       context.getClass(),
     ])
     if (isPublic) {
-      // 💡 See this condition
       return true
     }
 
-    const request = context.switchToHttp().getRequest()
+    const request = context.switchToHttp().getRequest<Request>()
     const token = this.extractTokenFromHeader(request)
     if (!token) {
       throw new UnauthorizedException()
