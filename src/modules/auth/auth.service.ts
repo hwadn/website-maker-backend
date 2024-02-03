@@ -14,7 +14,7 @@ export class AuthService {
     let uid
     if (user) {
       if (user.password !== password) {
-        throw new UnauthorizedException('invalid password!')
+        throw new UnauthorizedException('invalid password!', 'login')
       }
       uid = user.id
     } else {
