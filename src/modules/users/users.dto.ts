@@ -22,6 +22,9 @@ export class IUser {
 
   @ApiProperty({ enum: ['user', 'admin'] })
   role: string
+
+  @ApiProperty()
+  create_time: string
 }
 
 export class ListUsersResDto {

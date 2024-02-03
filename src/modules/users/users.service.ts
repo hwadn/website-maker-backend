@@ -24,7 +24,7 @@ export class UsersService {
     const [users, total] = await this.usersRepository.findAndCount({
       skip,
       take: pageSize,
-      select: ['id', 'name', 'role'],
+      select: ['id', 'name', 'role', 'create_time'],
     })
 
     return {

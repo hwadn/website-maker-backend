@@ -13,6 +13,9 @@ export class User {
   @Column()
   password: string
 
+  @Column()
+  create_time: string
+
   @Column({
     enum: ['user', 'admin'],
   })
