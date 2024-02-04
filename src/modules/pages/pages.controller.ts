@@ -12,6 +12,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger'
 import { PagesService } from './pages.service'
 import {
   CreatePageBodyDto,
+  UpdatePageBodyDto,
   IUpdatePageParams,
   ListPagesQueryDto,
   ListPagesResDto,
@@ -45,7 +46,7 @@ export class PagesController {
 
   @Patch('/:pageId')
   async updatePage(
-    @Body() body: CreatePageBodyDto,
+    @Body() body: UpdatePageBodyDto,
     @Param() params: IUpdatePageParams,
   ) {
     console.log('params:', params)
