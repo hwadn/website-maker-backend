@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Page } from './pages.entity'
 import { Repository } from 'typeorm'
-import { CreatePageBodyDto } from './pages.dto'
+import { CreatePageBodyDto, UpdatePageBodyDto } from './pages.dto'
 
 @Injectable()
 export class PagesService {
@@ -37,11 +37,11 @@ export class PagesService {
   }
 
   async createPage(body: CreatePageBodyDto & { creator_id: number }) {
-    const { creator_id, title, config } = body
-    return this.pageRepository.insert({ creator_id, title, config })
+    const { creator_id, title } = body
+    return this.pageRepository.insert({ creator_id, title })
   }
 
-  async updatePage(body: CreatePageBodyDto & { pageId: number }) {
+  async updatePage(body: UpdatePageBodyDto & { pageId: number }) {
     const { pageId, title, config } = body
     return this.pageRepository.update(pageId, { title, config })
   }

@@ -56,11 +56,19 @@ export class CreatePageBodyDto {
   @IsNotEmpty()
   @IsString()
   title: string
+}
 
+export class UpdatePageBodyDto {
   @ApiProperty()
   @IsNotEmpty()
+  @IsString()
+  title: string
+
+  @ApiProperty()
+  @IsOptional()
+  @IsNotEmpty()
   @IsJSON()
-  config: string
+  config?: string
 }
 
 export class IUpdatePageParams {
