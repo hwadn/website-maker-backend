@@ -16,6 +16,8 @@ import {
   IUpdatePageParams,
   ListPagesQueryDto,
   ListPagesResDto,
+  IGetPageDetailParams,
+  IGetPageDetailRes,
 } from './pages.dto'
 import { IRequest } from 'src/types/request'
 
@@ -29,6 +31,12 @@ export class PagesController {
   listPages(@Query() query: ListPagesQueryDto): Promise<ListPagesResDto> {
     const { pageSize = 10, pageNum = 1 } = query
     return this.pageService.listPages(Number(pageSize), Number(pageNum))
+  }
+
+  @Get('/:pageId')
+  @ApiResponse({ type: IGetPageDetailRes })
+  getPageDetail(@Param() params: IGetPageDetailParams) {
+    return this.pageService.getPageDetail(Number(params.pageId))
   }
 
   @Post()
@@ -49,7 +57,6 @@ export class PagesController {
     @Body() body: UpdatePageBodyDto,
     @Param() params: IUpdatePageParams,
   ) {
-    console.log('params:', params)
     const insertRes = await this.pageService.updatePage({
       ...body,
       pageId: Number(params.pageId),

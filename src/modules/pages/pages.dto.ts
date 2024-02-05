@@ -77,3 +77,12 @@ export class IUpdatePageParams {
   @IsString()
   pageId: string
 }
+
+export class IGetPageDetailParams {
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  pageId: string
+}
+
+export class IGetPageDetailRes extends IPage {}
