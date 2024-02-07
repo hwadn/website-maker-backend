@@ -23,9 +23,6 @@ export class Component {
   display_name: string
 
   @Column()
-  css_display: string
-
-  @Column()
   @RelationId((component: Component) => component.creator)
   creator_id: number
 

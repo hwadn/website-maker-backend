@@ -33,9 +33,6 @@ class IComponent {
   display_name: string
 
   @ApiProperty()
-  css_display: string
-
-  @ApiProperty()
   creator_id: number
 
   @ApiProperty()
@@ -71,11 +68,6 @@ export class CreateComponentBodyDto {
   @IsNotEmpty()
   @IsString()
   display_name: string
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsString()
-  css_display: string
 }
 
 export class IUpdateComponentParams {

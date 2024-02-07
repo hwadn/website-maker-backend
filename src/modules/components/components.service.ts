@@ -25,7 +25,6 @@ export class ComponentsService {
         'components.name',
         'components.version',
         'components.display_name',
-        'components.css_display',
         'components.creator_id',
         'components.create_time',
         'components.update_time',
@@ -44,25 +43,23 @@ export class ComponentsService {
   }
 
   async createComponent(body: CreateComponentBodyDto & { creator_id: number }) {
-    const { creator_id, name, version, display_name, css_display } = body
+    const { creator_id, name, version, display_name } = body
     return this.componentRepository.insert({
       creator_id,
       name,
       version,
       display_name,
-      css_display,
     })
   }
 
   async updateComponent(
     body: CreateComponentBodyDto & { componentId: number },
   ) {
-    const { componentId, name, version, display_name, css_display } = body
+    const { componentId, name, version, display_name } = body
     return this.componentRepository.update(componentId, {
       name,
       version,
       display_name,
-      css_display,
     })
   }
 }
