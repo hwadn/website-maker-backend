@@ -26,11 +26,12 @@ export class ComponentsController {
   @Get()
   @ApiResponse({ type: ListComponentsResDto })
   listComponents(@Query() query: ListComponentsQueryDto) {
-    const { pageSize = 10, pageNum = 1 } = query
-    return this.componentService.listComponents(
-      Number(pageSize),
-      Number(pageNum),
-    )
+    const { pageSize = 10, pageNum = 1, search } = query
+    return this.componentService.listComponents({
+      pageSize: Number(pageSize),
+      pageNum: Number(pageNum),
+      search,
+    })
   }
 
   @Post()

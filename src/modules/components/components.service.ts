@@ -11,10 +11,26 @@ export class ComponentsService {
     private componentRepository: Repository<Component>,
   ) {}
 
-  async listComponents(pageSize: number, pageNumber: number) {
-    const skip = (pageNumber - 1) * pageSize
-    const [pages, total] = await this.componentRepository
-      .createQueryBuilder('components')
+  async listComponents(args: {
+    pageSize: number
+    pageNum: number
+    search?: string
+  }) {
+    const { pageNum, pageSize, search } = args
+    const skip = (pageNum - 1) * pageSize
+    const searchBuilder =
+      this.componentRepository.createQueryBuilder('components')
+    if (search) {
+      searchBuilder.orWhere('components.name LIKE :name').setParameters({
+        name: `%${search}%`,
+      })
+      searchBuilder
+        .orWhere('components.display_name LIKE :display_name')
+        .setParameters({
+          display_name: `%${search}%`,
+        })
+    }
+    const [pages, total] = await searchBuilder
       .leftJoinAndSelect(
         'components.creator',
         'user',

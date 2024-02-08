@@ -60,9 +60,10 @@ export class CreatePageBodyDto {
 
 export class UpdatePageBodyDto {
   @ApiProperty()
+  @IsOptional()
   @IsNotEmpty()
   @IsString()
-  title: string
+  title?: string
 
   @ApiProperty()
   @IsOptional()

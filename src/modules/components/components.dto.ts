@@ -10,6 +10,10 @@ import { IUser } from '../users/users.dto'
 export class ListComponentsQueryDto {
   @ApiProperty({ required: false })
   @IsOptional()
+  search?: string
+
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsNumberString()
   pageSize?: string
 
