@@ -1,6 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { UsersService } from 'src/modules/users/users.service'
+import { LoginBodyDto } from './auth.dto'
+import { IRole } from '../users/users.entity'
 
 @Injectable()
 export class AuthService {
@@ -9,9 +11,14 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(username: string, password: string) {
+  async login(body: LoginBodyDto) {
+    const { inviter, username, password } = body
+    if (inviter !== '陈华东') {
+      throw new UnauthorizedException('inviter is invalid!', 'login')
+    }
     const user = await this.usersService.findOneByName(username)
     let uid
+    const role: IRole = 'user'
     if (user) {
       if (user.password !== password) {
         throw new UnauthorizedException('invalid password!', 'login')
@@ -21,12 +28,12 @@ export class AuthService {
       const insertRes = await this.usersService.createUser({
         name: username,
         password,
-        role: 'user',
+        role,
       })
       uid = insertRes.raw.insertId
     }
 
-    const payload = { uid, username }
+    const payload = { uid, username, role }
     return {
       username,
       uid,
