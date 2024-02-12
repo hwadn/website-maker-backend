@@ -13,6 +13,6 @@ export class AuthController {
   @Post('login')
   @ApiResponse({ type: LoginResDto })
   login(@Body() body: LoginBodyDto): Promise<LoginResDto> {
-    return this.authService.login(body.username, body.password)
+    return this.authService.login(body)
   }
 }

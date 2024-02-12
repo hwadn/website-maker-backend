@@ -4,6 +4,10 @@ import { IsNotEmpty } from 'class-validator'
 export class LoginBodyDto {
   @ApiProperty()
   @IsNotEmpty()
+  inviter: string
+
+  @ApiProperty()
+  @IsNotEmpty()
   username: string
 
   @ApiProperty()
