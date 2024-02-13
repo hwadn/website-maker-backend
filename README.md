@@ -44,7 +44,7 @@ docker build -t hwadn/website-maker-backend:0.0.2  .
 ## Docker run
 
 ```sh
-docker run -p 3000:3000 -e MYSQL_ROOT_PASSWORD=xxx -e MYSQL_HOST=172.22.0.2 -d hwadn/website-maker-backend:0.0.2
+docker run -p 3000:3000 -e MYSQL_ROOT_PASSWORD=xxx -e MYSQL_HOST=172.17.0.1 -d hwadn/website-maker-backend:0.0.2
 ```
 172.22.0.2
 
