@@ -37,14 +37,14 @@ $ yarn run test:cov
 ## Docker build
 
 ```sh
-docker build -t website-maker-backend:version  .
+docker build -t hwadn/website-maker-backend:0.0.1  .
 ```
 
 
 ## Docker run
 
 ```sh
-docker run -p 3000:3000 -e MYSQL_ROOT_PASSWORD=xxx -d website-maker-backend:version
+docker run -p 3000:3000 -e MYSQL_ROOT_PASSWORD=xxx -d hwadn/website-maker-backend:0.0.1
 ```
 
 ## Support
