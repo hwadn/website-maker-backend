@@ -21,7 +21,7 @@ import { Component } from './modules/components/components.entity'
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'example',
+      password: process.env['MYSQL_ROOT_PASSWORD'],
       database: 'website_maker',
       entities: [User, Page, Component],
       synchronize: false,
