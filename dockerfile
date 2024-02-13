@@ -22,6 +22,7 @@ RUN cd /app && rm -rf /app/node_modules && yarn
 RUN cd /app && rm -rf /app/dist &&  yarn build
 
 ENV MYSQL_ROOT_PASSWORD $MYSQL_ROOT_PASSWORD
+ENV MYSQL_HOST $MYSQL_HOST
 
 # 启动服务
 CMD yarn start:prod

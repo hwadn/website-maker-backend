@@ -5,6 +5,9 @@ import { ValidationPipe } from '@nestjs/common'
 import { TransformInterceptor } from 'src/interceptors/transform.interceptor'
 
 async function bootstrap() {
+  console.log('MYSQL_HOST:', process.env['MYSQL_HOST'])
+  console.log('MYSQL_ROOT_PASSWORD:', process.env['MYSQL_ROOT_PASSWORD'])
+
   const app = await NestFactory.create(AppModule)
   app.enableCors({ methods: '*' })
 
