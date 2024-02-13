@@ -14,6 +14,7 @@ RUN npm config set registry https://registry.npmmirror.com
 
 # npm 安装依赖
 COPY package.json /app/package.json
+RUN cd /app && rm -rf /app/test
 RUN cd /app && rm /app/yarn.lock
 RUN cd /app && rm -rf /app/node_modules && yarn
 
@@ -23,7 +24,6 @@ RUN cd /app && rm -rf /app/dist &&  yarn build
 ENV MYSQL_ROOT_PASSWORD $MYSQL_ROOT_PASSWORD
 
 # 启动服务
-# "start:prod": "cross-env NODE_ENV=production node ./dist/src/main.js",
 CMD yarn start:prod
 
 EXPOSE 3000
