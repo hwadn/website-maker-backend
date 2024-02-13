@@ -18,10 +18,10 @@ import { Component } from './modules/components/components.entity'
     AuthModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'host.docker.internal',
       port: 3306,
       username: 'root',
-      password: 'example',
+      password: process.env['MYSQL_ROOT_PASSWORD'],
       database: 'website_maker',
       entities: [User, Page, Component],
       synchronize: false,
